@@ -17,5 +17,31 @@ public class Invoice {
     private String createAt;
     @Column (name = "total")
     private double total;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getClient_id() {
+        return client_id;
+    }
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
+    }
+    public String getCreateAt() {
+        return createAt;
+    }
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
+    }
+    public double getTotal() {
+        return total;
+    }
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
+    
 }

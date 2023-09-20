@@ -19,6 +19,36 @@ public class InvoiceDetails {
     private int productId;
     @Column (name = "price")
     private double price;
+    public int getInvoiceDetailId() {
+        return invoiceDetailId;
+    }
+    public void setInvoiceDetailId(int invoiceDetailId) {
+        this.invoiceDetailId = invoiceDetailId;
+    }
+    public int getInvoiceId() {
+        return invoiceId;
+    }
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+    public int getAmount() {
+        return amount;
+    }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+    public int getProductId() {
+        return productId;
+    }
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     
 }
