@@ -51,4 +51,10 @@ public class DaoFactory {
         session.close();
         return products;
     }
+    public Products getProductById(int id) {
+        Session session = sessionFactory.openSession();
+        Products product = session.get(Products.class, id);
+        session.close();
+        return product;
+    }
 }
