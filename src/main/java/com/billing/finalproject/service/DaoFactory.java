@@ -25,7 +25,7 @@ public class DaoFactory {
     public void create(Object object) throws Exception {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(object);
+        session.persist(object);
         session.getTransaction().commit();
         session.close();
     } 
@@ -33,7 +33,7 @@ public class DaoFactory {
     public void update(Object object) throws Exception {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(object);
+        session.merge(object);
         session.getTransaction().commit();
         session.close();
     }
@@ -41,7 +41,7 @@ public class DaoFactory {
     public void delete(Object object) throws Exception {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(object);
+        session.remove(object);
         session.getTransaction().commit();
         session.close();
     }
