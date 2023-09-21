@@ -32,6 +32,13 @@ public class InvoiceDetails {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    public InvoiceDetails (Integer invoiceDetailId, Invoice invoice, int amount, Product product, double price) {
+        this.invoiceDetailId = invoiceDetailId;
+        this.invoice = invoice;
+        this.amount = amount;
+        this.product = product;
+        this.price = price;
+    }
     public int getInvoiceDetailId() {
         return invoiceDetailId;
     }
