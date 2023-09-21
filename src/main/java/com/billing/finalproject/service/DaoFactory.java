@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.billing.finalproject.entity.Products;
+import com.billing.finalproject.entity.Product;
 
 import jakarta.persistence.EntityManager;
 
 @Service
 public class DaoFactory {
+
+    public DaoFactory (){
+        
+    }
     
     @Autowired
     private SessionFactory sessionFactory;
@@ -45,15 +49,15 @@ public class DaoFactory {
         session.getTransaction().commit();
         session.close();
     }
-    public List<Products> getAllProducts() {
+    public List<Product> getAllProducts() {
         Session session = sessionFactory.openSession();
-        List<Products> products = session.createQuery("from Products", Products.class).getResultList();
+        List<Product> products = session.createQuery("from Products", Product.class).getResultList();
         session.close();
         return products;
     }
-    public Products getProductById(int id) {
+    public Product getProductById(int id) {
         Session session = sessionFactory.openSession();
-        Products product = session.get(Products.class, id);
+        Product product = session.get(Product.class, id);
         session.close();
         return product;
     }

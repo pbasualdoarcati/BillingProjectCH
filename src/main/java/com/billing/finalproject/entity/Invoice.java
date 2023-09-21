@@ -1,60 +1,87 @@
 package com.billing.finalproject.entity;
+import java.util.Date;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+
 
 @Entity
-@Table
+@Table(name = "invoice_details")
 public class Invoice {
     public Invoice() {
         super();
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Column (name = "id")
     private int id;
-    @Column (name = "client_id")
-    private int client_id;
     @Column (name = "create_at")
-    private String createAt;
+    private Date createdAt;
     @Column (name = "total")
     private double total;
 
-    @ManyToOne 
-    private Clients client;
-    public Clients getClient() {
-        return client;
+    @ManyToOne
+    @JoinColumn(columnDefinition = "client_id")
+    private Client client;
+
+    @OneToMany(mappedBy = "invoice")
+    private List<InvoiceDetails> invoiceDetails;
+    
+    public Invoice (int id, Client client, Date createdAt, double total) {
+        this.id = id;
+        this.client = client;
+        this.createdAt = createdAt;
+        this.total = total;
     }
-    
-    @OneToMany 
-    @Column (name = "invoice_detail_id")
-    private InvoiceDetails[] invoiceDetails;
-    
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
-    public int getClient_id() {
-        return client_id;
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
-    public String getCreateAt() {
-        return createAt;
-    }
-    public void setCreateAt(String createAt) {
-        this.createAt = createAt;
-    }
+
     public double getTotal() {
         return total;
     }
+
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<InvoiceDetails> getInvoiceDetails() {
+        return invoiceDetails;
+    }
+
+    public void setInvoiceDetails(List<InvoiceDetails> invoiceDetails) {
+        this.invoiceDetails = invoiceDetails;
+    }
+
 
     
 }

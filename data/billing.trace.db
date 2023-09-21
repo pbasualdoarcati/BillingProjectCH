@@ -29,3 +29,6 @@ CREATE TABLE clients ( id INT PRIMARY KEY, name VARCHAR(75), lastname VARCHAR(75
 2023-09-19 23:59:51 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENTS" already exists; SQL statement:
 CREATE TABLE clients ( id INT PRIMARY KEY, name VARCHAR(75), lastname VARCHAR(75), docnumber VARCHAR(75) ) [42101-214]
+2023-09-20 21:29:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CLIENTS" already exists; SQL statement:
+CREATE TABLE clients ( id INT PRIMARY KEY, name VARCHAR(75), lastname VARCHAR(75), docnumber VARCHAR(75) ) [42101-214]

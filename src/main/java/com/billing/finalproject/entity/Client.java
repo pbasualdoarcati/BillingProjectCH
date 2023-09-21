@@ -1,18 +1,24 @@
 package com.billing.finalproject.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "CLIENTS")
-public class Clients {
-    public Clients() {
+@Table (name = "clients")
+public class Client {
+    public Client() {
         super();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     private int id;
     @Column (name = "name")
@@ -22,10 +28,15 @@ public class Clients {
     @Column (name = "docnumber")
     private String docnumber;
 
-    @OneToMany
-    @JoinColumn (name = "id")
-    private Invoice invoices;
-    
+    @OneToMany(mappedBy = "client")
+    private List<Invoice> invoices;
+
+    public Client (int id, String name, String lastname, String docnumber) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.docnumber = docnumber;
+    }
     public int getId() {
         return id;
     }
