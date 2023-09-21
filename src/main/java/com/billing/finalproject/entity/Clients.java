@@ -2,6 +2,8 @@ package com.billing.finalproject.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class Clients {
     @Column (name = "docnumber")
     private String docnumber;
 
+    @OneToMany
+    @JoinColumn (name = "id")
+    private Invoice invoices;
+    
     public int getId() {
         return id;
     }

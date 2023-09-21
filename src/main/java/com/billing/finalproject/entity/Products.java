@@ -2,6 +2,7 @@ package com.billing.finalproject.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +21,10 @@ public class Products {
     private int stock;
     @Column (name = "price")
     private double price;
+
+    @OneToMany
+    @Column (name = "invoice_detail_id")
+    private InvoiceDetails invoiceDetails;
     
     public int getId() {
         return id;
