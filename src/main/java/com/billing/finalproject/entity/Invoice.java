@@ -27,7 +27,7 @@ public class Invoice {
     @Column(name = "create_at")
     private Date createdAt;
     @Column(name = "total")
-    private double total;
+    private Double total;
 
     @ManyToOne
     @JoinColumn(columnDefinition = "client_id")
@@ -59,11 +59,11 @@ public class Invoice {
         this.createdAt = createdAt;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
