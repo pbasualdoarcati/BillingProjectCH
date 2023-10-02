@@ -1,4 +1,5 @@
 package com.billing.finalproject.entity;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,20 +13,20 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
-
 @Entity
 @Table(name = "invoice_details")
 public class Invoice {
     public Invoice() {
         super();
     }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column (name = "id")
-    private int id;
-    @Column (name = "create_at")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "create_at")
     private Date createdAt;
-    @Column (name = "total")
+    @Column(name = "total")
     private double total;
 
     @ManyToOne
@@ -34,19 +35,19 @@ public class Invoice {
 
     @OneToMany(mappedBy = "invoice")
     private List<InvoiceDetails> invoiceDetails;
-    
-    public Invoice (int id, Client client, Date createdAt, double total) {
+
+    public Invoice(Long id, Client client, Date createdAt, double total) {
         this.id = id;
         this.client = client;
         this.createdAt = createdAt;
         this.total = total;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -82,6 +83,4 @@ public class Invoice {
         this.invoiceDetails = invoiceDetails;
     }
 
-
-    
 }
