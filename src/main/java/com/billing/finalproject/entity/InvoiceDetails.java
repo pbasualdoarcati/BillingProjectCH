@@ -21,9 +21,9 @@ public class InvoiceDetails {
     @Column(name = "invoice_detail_id")
     private Long invoiceDetailId;
     @Column(name = "amount")
-    private int amount;
+    private Integer amount;
     @Column(name = "price")
-    private double price;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "invoice_id")
@@ -33,7 +33,7 @@ public class InvoiceDetails {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public InvoiceDetails(Long invoiceDetailId, Invoice invoice, int amount, Product product, double price) {
+    public InvoiceDetails(Long invoiceDetailId, Invoice invoice, Integer amount, Product product, Double price) {
         this.invoiceDetailId = invoiceDetailId;
         this.invoice = invoice;
         this.amount = amount;
@@ -49,19 +49,19 @@ public class InvoiceDetails {
         this.invoiceDetailId = invoiceDetailId;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
