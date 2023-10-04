@@ -2,7 +2,6 @@ package com.billing.finalproject.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,13 +18,9 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "lastname")
     private String lastname;
-    @Column(name = "docnumber")
     private String docnumber;
 
     @OneToMany(mappedBy = "client")

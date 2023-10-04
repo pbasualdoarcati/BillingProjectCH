@@ -30,7 +30,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping(value = "/", produces = { "application/json" })
+    @GetMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { "application/json" })
     public ResponseEntity<Iterable<Product>> getProducts() {
         return ResponseEntity.ok(productService.findAll());
     }

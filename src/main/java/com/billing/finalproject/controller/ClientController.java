@@ -43,12 +43,14 @@ public class ClientController {
 
     }
 
-    @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Client> saveClient(@RequestBody Client client) {
+    @PostMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+            MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<Client> save(@RequestBody Client client) {
         try {
-            Client createdClient = clientService.save(client);
-            return ResponseEntity.ok(createdClient);
+            Client clientSaved = clientService.save(client);
+            return ResponseEntity.ok(clientSaved);
         } catch (Exception e) {
+            System.out.println("client: " + client);
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }

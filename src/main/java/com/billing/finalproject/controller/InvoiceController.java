@@ -36,7 +36,8 @@ public class InvoiceController {
         return ResponseEntity.ok(invoiceService.findAll());
     }
 
-    @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+            MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Invoice> saveInvoice(@RequestBody Invoice invoice) {
         try {
             Invoice createInvoice = invoiceService.save(invoice);
