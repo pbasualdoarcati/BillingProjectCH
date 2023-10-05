@@ -2,7 +2,6 @@ package com.billing.finalproject.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,22 +18,17 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    @Column(name = "description")
+    private Long productId;
     private String description;
-    @Column(name = "code")
     private String code;
-    @Column(name = "stock")
-    private int stock;
-    @Column(name = "price")
-    private double price;
+    private Long stock;
+    private Double price;
 
     @OneToMany(mappedBy = "product")
     private List<InvoiceDetails> invoiceDetails;
 
-    public Product(Long id, String description, String code, int stock, double price) {
-        this.id = id;
+    public Product(Long id, String description, String code, Long stock, Double price) {
+        this.productId = id;
         this.description = description;
         this.code = code;
         this.stock = stock;
@@ -42,11 +36,11 @@ public class Product {
     }
 
     public Long getId() {
-        return id;
+        return productId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.productId = id;
     }
 
     public String getDescription() {
@@ -65,19 +59,19 @@ public class Product {
         this.code = code;
     }
 
-    public int getStock() {
+    public Long getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

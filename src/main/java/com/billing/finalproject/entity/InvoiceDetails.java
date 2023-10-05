@@ -1,6 +1,6 @@
 package com.billing.finalproject.entity;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "invoice")
+@Table(name = "invoice_details")
 public class InvoiceDetails {
     public InvoiceDetails() {
         super();
@@ -18,35 +18,31 @@ public class InvoiceDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "invoice_detail_id")
-    private Long invoiceDetailId;
-    @Column(name = "amount")
+    private Long id;
     private Integer amount;
-    @Column(name = "price")
     private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "invoice_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "invoiceId")
     private Invoice invoice;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "productId")
     private Product product;
 
-    public InvoiceDetails(Long invoiceDetailId, Invoice invoice, Integer amount, Product product, Double price) {
-        this.invoiceDetailId = invoiceDetailId;
+    public InvoiceDetails(Invoice invoice, Integer amount, Product product, Double price) {
         this.invoice = invoice;
         this.amount = amount;
         this.product = product;
         this.price = price;
     }
 
-    public Long getInvoiceDetailId() {
-        return invoiceDetailId;
+    public Long getId() {
+        return id;
     }
 
-    public void setInvoiceDetailId(Long invoiceDetailId) {
-        this.invoiceDetailId = invoiceDetailId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getAmount() {
