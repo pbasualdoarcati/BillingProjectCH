@@ -25,12 +25,6 @@ public class InvoiceDetailsController {
     @Autowired
     private InvoiceDetailsService invoiceDetailsService;
 
-    @Autowired
-    private InvoiceService invoiceService;
-
-    @Autowired
-    private ProductService productService;
-
     @GetMapping(value = "/{id}", produces = { "application/json" })
     public ResponseEntity<Optional<InvoiceDetails>> getInvoiceDetailsById(@PathVariable Long id) {
         Optional<InvoiceDetails> invoiceDetails = invoiceDetailsService.findInvoiceDetailsById(id);
@@ -45,30 +39,5 @@ public class InvoiceDetailsController {
     @GetMapping(value = "/", produces = { "application/json" })
     public ResponseEntity<Iterable<InvoiceDetails>> getInvoiceDetails() {
         return ResponseEntity.ok(invoiceDetailsService.findAll());
-    }
-
-    @PostMapping(value = "/{invoiceId}", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
-            MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<InvoiceDetails> saveInvoiceDetails(@RequestBody InvoiceDetails invoiceDetails,
-            @PathVariable Long invoiceId) {
-        try {
-            Long productId = invoiceDetails.getProduct().getProductId();
-
-            Optional<Invoice> invoiceOptional = invoiceService.findInvoiceById(invoiceId);
-            Optional<Product> productOptional = productService.findProductById(productId);
-
-            if (invoiceOptional.isPresent() && productOptional.isPresent()) {
-                Product product = productOptional.get();
-                invoiceDetails.setProduct(product);
-
-                InvoiceDetails createdInvoiceDetails = invoiceDetailsService.save(invoiceDetails);
-                return ResponseEntity.ok(createdInvoiceDetails);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
     }
 }

@@ -19,14 +19,14 @@ public class InvoiceDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer amount;
+    private Long amount;
     private Double price;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "productId")
     private Product product;
 
-    public InvoiceDetails(Integer amount, Product product, Double price) {
+    public InvoiceDetails(Long amount, Product product, Double price) {
         this.amount = amount;
         this.product = product;
         this.price = price;
@@ -40,11 +40,11 @@ public class InvoiceDetails {
         this.id = id;
     }
 
-    public Integer getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

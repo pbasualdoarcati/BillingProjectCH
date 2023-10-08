@@ -37,4 +37,16 @@ public class ProductService {
 
         return product.get().getPrice();
     }
+
+    public Long updateStockWithSell(Long productId, Long stock) {
+        var product = productRepository.findById(productId);
+        if (product.isEmpty())
+            throw new RuntimeException();
+
+        product.get().setStock(product.get().getStock() - stock);
+        productRepository.save(product.get());
+
+        return product.get().getStock(); // return stock after sell
+
+    }
 }

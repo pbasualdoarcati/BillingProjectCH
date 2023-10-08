@@ -1,5 +1,6 @@
 package com.billing.finalproject.controller;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +31,10 @@ public class ProductController {
         }
     }
 
-    @GetMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { "application/json" })
-    public ResponseEntity<Iterable<Product>> getProducts() {
-        return ResponseEntity.ok(productService.findAll());
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<Product>> getAllProducts() {
+        Iterable<Product> products = productService.findAll();
+        return ResponseEntity.ok(products);
     }
 
     @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE })

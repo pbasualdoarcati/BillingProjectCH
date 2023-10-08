@@ -48,9 +48,19 @@ public class InvoiceService {
         var details = invoice.getInvoiceDetails();
         var aux = 0d;
         if (details != null)
-            for(InvoiceDetails id: details) {
+            for (InvoiceDetails id : details) {
+                Long productId = id.getProduct().getProductId();
+                Long amount = id.getAmount();
+
+                var newStockWithSell = productService.updateStockWithSell(productId, amount);
+                if (newStockWithSell < 0)
+                    throw new RuntimeException("There is not enough stock for the product with ID " + productId);
+
+                id.getProduct().setStock(newStockWithSell);
+
                 id.setPrice(productService.getProductPrice(id.getProduct().getProductId()) * id.getAmount());
                 aux += id.getPrice();
+
             }
         invoice.setTotal(aux);
 
