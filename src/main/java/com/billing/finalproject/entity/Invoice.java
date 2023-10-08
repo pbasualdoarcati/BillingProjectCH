@@ -3,16 +3,7 @@ package com.billing.finalproject.entity;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "invoice")
@@ -34,7 +25,7 @@ public class Invoice {
     @JoinColumn(name = "clientId")
     private Client client;
 
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.MERGE)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<InvoiceDetails> invoiceDetails;
 
     public Invoice(Long id, Client client, Date createdAt, double total) {
@@ -44,12 +35,12 @@ public class Invoice {
         this.total = total;
     }
 
-    public Long getId() {
+    public Long getInvoiceId() {
         return invoiceId;
     }
 
-    public void setId(Long id) {
-        this.invoiceId = id;
+    public void setInvoiceId(Long invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
     public Date getCreatedAt() {
@@ -83,5 +74,4 @@ public class Invoice {
     public void setInvoiceDetails(List<InvoiceDetails> invoiceDetails) {
         this.invoiceDetails = invoiceDetails;
     }
-
 }

@@ -2,6 +2,7 @@ package com.billing.finalproject.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,6 +26,7 @@ public class Product {
     private Double price;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<InvoiceDetails> invoiceDetails;
 
     public Product(Long id, String description, String code, Long stock, Double price) {
@@ -35,12 +37,12 @@ public class Product {
         this.price = price;
     }
 
-    public Long getId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setId(Long id) {
-        this.productId = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getDescription() {
@@ -75,4 +77,11 @@ public class Product {
         this.price = price;
     }
 
+    public List<InvoiceDetails> getInvoiceDetails() {
+        return invoiceDetails;
+    }
+
+    public void setInvoiceDetails(List<InvoiceDetails> invoiceDetails) {
+        this.invoiceDetails = invoiceDetails;
+    }
 }

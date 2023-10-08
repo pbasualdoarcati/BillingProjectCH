@@ -28,4 +28,13 @@ public class ProductService {
     public Iterable<Product> findAll() {
         return productRepository.findAll();
     }
+
+    public double getProductPrice(Long productId) {
+        var product = productRepository.findById(productId);
+
+        if (product.isEmpty())
+            throw new RuntimeException();
+
+        return product.get().getPrice();
+    }
 }

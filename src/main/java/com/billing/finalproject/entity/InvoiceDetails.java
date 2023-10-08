@@ -23,15 +23,10 @@ public class InvoiceDetails {
     private Double price;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "invoiceId")
-    private Invoice invoice;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "productId")
     private Product product;
 
-    public InvoiceDetails(Invoice invoice, Integer amount, Product product, Double price) {
-        this.invoice = invoice;
+    public InvoiceDetails(Integer amount, Product product, Double price) {
         this.amount = amount;
         this.product = product;
         this.price = price;
@@ -61,14 +56,6 @@ public class InvoiceDetails {
         this.price = price;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -76,5 +63,4 @@ public class InvoiceDetails {
     public void setProduct(Product product) {
         this.product = product;
     }
-
 }

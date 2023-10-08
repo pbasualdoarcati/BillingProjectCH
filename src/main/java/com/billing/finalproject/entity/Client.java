@@ -2,6 +2,8 @@ package com.billing.finalproject.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,6 +34,7 @@ public class Client {
     @Schema(description = "Client Document Number", example = "12345678", requiredMode = Schema.RequiredMode.AUTO)
     private String docnumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.MERGE)
     private List<Invoice> invoices;
 
@@ -42,28 +45,28 @@ public class Client {
         this.docnumber = docnumber;
     }
 
-    public Long getId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setId(Long id) {
-        this.clientId = id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public String getName() {
+    public String getClientName() {
         return clientName;
     }
 
-    public void setName(String name) {
-        this.clientName = name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public String getLastname() {
+    public String getClientLastname() {
         return clientLastname;
     }
 
-    public void setLastname(String lastname) {
-        this.clientLastname = lastname;
+    public void setClientLastname(String clientLastname) {
+        this.clientLastname = clientLastname;
     }
 
     public String getDocnumber() {
@@ -72,6 +75,14 @@ public class Client {
 
     public void setDocnumber(String docnumber) {
         this.docnumber = docnumber;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
 }

@@ -47,21 +47,18 @@ public class InvoiceDetailsController {
         return ResponseEntity.ok(invoiceDetailsService.findAll());
     }
 
-    @PostMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
+    @PostMapping(value = "/{invoiceId}", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
             MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<InvoiceDetails> saveInvoiceDetails(@RequestBody InvoiceDetails invoiceDetails) {
+    public ResponseEntity<InvoiceDetails> saveInvoiceDetails(@RequestBody InvoiceDetails invoiceDetails,
+            @PathVariable Long invoiceId) {
         try {
-            Long invoiceId = invoiceDetails.getInvoice().getId();
-            Long productId = invoiceDetails.getProduct().getId();
+            Long productId = invoiceDetails.getProduct().getProductId();
 
             Optional<Invoice> invoiceOptional = invoiceService.findInvoiceById(invoiceId);
             Optional<Product> productOptional = productService.findProductById(productId);
 
             if (invoiceOptional.isPresent() && productOptional.isPresent()) {
-                Invoice invoice = invoiceOptional.get();
                 Product product = productOptional.get();
-
-                invoiceDetails.setInvoice(invoice);
                 invoiceDetails.setProduct(product);
 
                 InvoiceDetails createdInvoiceDetails = invoiceDetailsService.save(invoiceDetails);
