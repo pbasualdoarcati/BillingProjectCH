@@ -7,6 +7,7 @@ import com.billing.finalproject.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -38,7 +39,7 @@ public class InvoiceService {
     public Invoice saveWithDetails(Invoice invoice) {
         Long clientId = invoice.getClient().getClientId();
         Optional<Client> clientOptional = clientService.findClientById(clientId);
-
+        invoice.setCreatedAt(new Date());
         if (clientOptional.isEmpty())
             throw new RuntimeException();
 
