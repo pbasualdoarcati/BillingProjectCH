@@ -41,7 +41,7 @@ public class InvoiceService {
         Optional<Client> clientOptional = clientService.findClientById(clientId);
         invoice.setCreatedAt(new Date());
         if (clientOptional.isEmpty())
-            throw new RuntimeException();
+            throw new RuntimeException("The client not exists");
 
         Client client = clientOptional.get();
         invoice.setClient(client);
