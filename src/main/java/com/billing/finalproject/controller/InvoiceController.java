@@ -1,6 +1,7 @@
 package com.billing.finalproject.controller;
 
 import com.billing.finalproject.entity.Invoice;
+import com.billing.finalproject.response.ResourceNotFoundException;
 import com.billing.finalproject.service.InvoiceService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class InvoiceController {
         if (invoice.isPresent()) {
             return ResponseEntity.ok(invoice);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Invoice not found");
         }
     }
 
@@ -63,7 +64,7 @@ public class InvoiceController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+            throw new ResourceNotFoundException("Invoice not created");
         }
     }
 

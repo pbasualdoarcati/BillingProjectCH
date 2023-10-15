@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.billing.finalproject.entity.Client;
+import com.billing.finalproject.response.ResourceNotFoundException;
 import com.billing.finalproject.service.ClientService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +32,7 @@ public class ClientController {
         if (client.isPresent()) {
             return ResponseEntity.ok(client);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Client not found with ID: " + id);
         }
     }
 
@@ -50,9 +51,8 @@ public class ClientController {
             Client clientSaved = clientService.save(client);
             return ResponseEntity.ok(clientSaved);
         } catch (Exception e) {
-            System.out.println("client: " + client);
             e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+            throw new ResourceNotFoundException("Client not saved");
         }
     }
 }

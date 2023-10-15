@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.billing.finalproject.entity.Product;
+import com.billing.finalproject.response.ResourceNotFoundException;
 import com.billing.finalproject.service.ProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class ProductController {
         if (product.isPresent()) {
             return ResponseEntity.ok(product);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Product not found");
         }
     }
 
@@ -64,7 +65,7 @@ public class ProductController {
             return ResponseEntity.ok(createdProduct);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+            throw new ResourceNotFoundException("Product not created");
         }
     }
 }
