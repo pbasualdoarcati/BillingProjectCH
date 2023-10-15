@@ -35,12 +35,6 @@ public class ClientController {
         }
     }
 
-    @Operation(summary = "Get a client invoices", description = "Get a client invoices", tags = { "Client" })
-    @GetMapping(value = "/{id}/invoices", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Optional<Client>> getClientInvoices(@PathVariable Long id) {
-        return ResponseEntity.ok(clientService.findClientById(id));
-    }
-
     @Operation(summary = "Get all clients", description = "Get all clients", tags = { "Client" })
     @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Iterable<Client>> getClients() {
