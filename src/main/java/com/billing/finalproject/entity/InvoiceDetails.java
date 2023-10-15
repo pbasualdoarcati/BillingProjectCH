@@ -1,5 +1,6 @@
 package com.billing.finalproject.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,8 +19,10 @@ public class InvoiceDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
     private Long amount;
+    @Schema(hidden = true)
     private Double price;
 
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -3,6 +3,8 @@ package com.billing.finalproject.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,9 +22,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
+    @Schema(hidden = true)
     private String description;
+    @Schema(hidden = true)
     private String code;
+    @Schema(hidden = true)
     private Long stock;
+    @Schema(hidden = true)
     private Double price;
 
     @OneToMany(mappedBy = "product")

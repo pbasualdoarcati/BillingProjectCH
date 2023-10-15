@@ -4,9 +4,15 @@ import com.billing.finalproject.entity.Client;
 import com.billing.finalproject.entity.Invoice;
 import com.billing.finalproject.entity.InvoiceDetails;
 import com.billing.finalproject.repository.InvoiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -39,13 +45,39 @@ public class InvoiceService {
     public Invoice saveWithDetails(Invoice invoice) {
         Long clientId = invoice.getClient().getClientId();
         Optional<Client> clientOptional = clientService.findClientById(clientId);
-        invoice.setCreatedAt(new Date());
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity("http://worldclockapi.com/api/json/utc/now",
+                String.class);
+
+        Date currentDate;
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                JsonNode root = objectMapper.readTree(response.getBody());
+                String currentDateString = root.get("currentDateTime").asText();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                currentDate = simpleDateFormat.parse(currentDateString);
+
+                // Convert java.util.Date to java.sql.Date
+                java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+
+                invoice.setCreatedAt(sqlDate);
+            } catch (Exception e) {
+                currentDate = new Date();
+            }
+        } else {
+            currentDate = new Date();
+        }
+        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+        invoice.setCreatedAt(sqlDate);
         if (clientOptional.isEmpty())
             throw new RuntimeException("The client not exists");
 
         Client client = clientOptional.get();
         invoice.setClient(client);
 
+        int totalProduct = 0;
         var details = invoice.getInvoiceDetails();
         var aux = 0d;
         if (details != null)
@@ -61,8 +93,9 @@ public class InvoiceService {
 
                 id.setPrice(productService.getProductPrice(id.getProduct().getProductId()) * id.getAmount());
                 aux += id.getPrice();
-
+                totalProduct += amount;
             }
+        invoice.setTotalProduct(totalProduct);
         invoice.setTotal(aux);
 
         return save(invoice);
