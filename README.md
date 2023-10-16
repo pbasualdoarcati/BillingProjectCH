@@ -27,7 +27,6 @@ This Java Spring Boot project is based on the Java programming course offered by
 - Spring Boot Starter Data JPA
 - Spring Boot Starter Web
 - H2 Database (runtime)
-- Spring Boot Starter Test (scope: test)
 - SpringDoc OpenAPI Starter WebMvc UI (version 2.1.0)
 
 The following describes the purpose of each dependency used in the project:
@@ -36,7 +35,6 @@ The following describes the purpose of each dependency used in the project:
 - `spring-boot-starter-data-jpa`: Facilitates integration with databases using JPA (Java Persistence API).
 - `spring-boot-starter-web`: Offers tools to build web applications.
 - `h2`: In-memory database used for development (runtime).
-- `spring-boot-starter-test`: Provides tools and libraries for testing the application.
 - `springdoc-openapi-starter-webmvc-ui` (version 2.1.0): Generates OpenAPI documentation for the web API.
 
 ## Endpoints
