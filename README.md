@@ -2,13 +2,24 @@
 
 ![Java 17](https://img.shields.io/badge/Java-17-red) ![Spring Boot 3.1.3](https://img.shields.io/badge/Spring%20Boot-3.1.3-green)
 
+## Table of Contents
+
+1. [Project Description](#project-description)
+2. [Author](#author)
+3. [Technologies Used](#technologies-used)
+4. [Endpoints](#endpoints)
+   - [Product](#product)
+   - [Invoice](#invoice)
+   - [Client](#client)
+5. [Examples of POST Requests](#examples-of-post-requests)
+
 ## Project Description
 
 This Java Spring Boot project is based on the Java programming course offered by Coder House. You can find more information about the course [here](https://www.coderhouse.com/online/programacion-con-java). The primary goal of this project is to implement an invoicing system using Spring Boot technologies.
 
 ## Author
 
-[**Pablo Basualdo Arcati**](https://github.com/pbasualdoarcati)
+[**Pablo**](https://github.com/pbasualdoarcati)
 
 ## Technologies Used
 
@@ -16,6 +27,7 @@ This Java Spring Boot project is based on the Java programming course offered by
 - Spring Boot Starter Data JPA
 - Spring Boot Starter Web
 - H2 Database (runtime)
+- Spring Boot Starter Test (scope: test)
 - SpringDoc OpenAPI Starter WebMvc UI (version 2.1.0)
 
 The following describes the purpose of each dependency used in the project:
@@ -24,6 +36,7 @@ The following describes the purpose of each dependency used in the project:
 - `spring-boot-starter-data-jpa`: Facilitates integration with databases using JPA (Java Persistence API).
 - `spring-boot-starter-web`: Offers tools to build web applications.
 - `h2`: In-memory database used for development (runtime).
+- `spring-boot-starter-test`: Provides tools and libraries for testing the application.
 - `springdoc-openapi-starter-webmvc-ui` (version 2.1.0): Generates OpenAPI documentation for the web API.
 
 ## Endpoints
