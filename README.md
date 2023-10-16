@@ -19,7 +19,7 @@ This Java Spring Boot project is based on the Java programming course offered by
 
 ## Author
 
-[**Pablo**](https://github.com/pbasualdoarcati)
+[**Pablo Basualdo Arcati**](https://github.com/pbasualdoarcati)
 
 ## Technologies Used
 
