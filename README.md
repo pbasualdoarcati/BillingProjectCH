@@ -1,4 +1,4 @@
-# Java Spring Boot Invoicing
+# Final billing project
 
 ![Java 17](https://img.shields.io/badge/Java-17-red) ![Spring Boot 3.1.3](https://img.shields.io/badge/Spring%20Boot-3.1.3-green)
 
