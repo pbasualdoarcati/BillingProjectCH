@@ -69,7 +69,7 @@ Here are examples of POST requests to create clients, products, and invoices:
 POST /api/client/
 {
   "clientName": "Test",
-  "clientLastname": "Test apellido",
+  "clientLastname": "Test lastname",
   "docnumber": "1231546"
 }
 
